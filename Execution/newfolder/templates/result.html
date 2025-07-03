@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 50px;
+        }
+        .result-container {
+            background: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4682b4;
+        }
+        .result-text {
+            font-size: 20px;
+            color: #4b0082;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #4682b4;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #2e5984;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Autism Prediction Result</h1>
+        <p class="result-text"><strong>{{ result }}</strong></p>
+        <a href="/">Take the survey again</a>
+    </div>
+</body>
+</html>

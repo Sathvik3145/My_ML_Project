@@ -1,0 +1,43 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.svm import SVC
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+import pickle
+
+# Streamlit UI
+st.title("Autism Prediction System")
+st.write("Fill in the survey below to predict the likelihood of Autism.")
+
+# Define the questionnaire fields
+def get_user_input():
+    age = st.number_input("Age of the patient in years", min_value=1, max_value=100, value=25)
+    gender = st.selectbox("Gender of the patient", ["Male", "Female"])
+    ethnicity = st.selectbox("Ethnicity of the patient", ["White-European", "Middle Eastern", "Asian", "Black", "South Asian", "Pasifika", "Scandinavian", "Latino", "Hispanic", "Turkish", "Others"])
+    jaundice = st.radio("Did the patient have jaundice at birth?", ["Yes", "No"])
+    autism_family = st.radio("Does an immediate family member have Autism?", ["Yes", "No"])
+    used_app_before = st.radio("Has the patient undergone a screening test before?", ["Yes", "No"])
+    country_of_res = st.text_input("Country of residence of the patient")
+    relation = st.selectbox("Relation to patient", ["Self", "Parent", "Relative", "Others", "Health care professional"])
+    
+    # A1 to A10 Scores
+    a_scores = [st.radio(f"A{i}_Score", ["Yes", "No"]) for i in range(1, 11)]
+    
+    return [age, gender, ethnicity, jaundice, autism_family, used_app_before, country_of_res, relation] + a_scores
+
+# Predict autism likelihood
+if st.button("Predict Autism"):  
+    user_data = get_user_input()
+    
+    # Convert Yes/No responses to 1/0
+    user_data = [1 if val == "Yes" else 0 if val == "No" else val for val in user_data]
+    
+    # Placeholder Model Prediction (Replace with actual trained model)
+    prediction = np.random.choice([0, 1])  # Random prediction for now
+    prediction_prob = np.random.uniform(0.5, 1.0)  # Random probability for demonstration
+    
+    # Show result
+    if prediction == 1:
+        st.error(f"High likelihood of Autism (Confidence: {prediction_prob:.2f})")
+    else:
+        st.success(f"Low likelihood of Autism (Confidence: {1 - prediction_prob:.2f})")
